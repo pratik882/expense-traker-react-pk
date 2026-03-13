@@ -1,5 +1,5 @@
-export default (state, action) => {
-  switch(action.type) {
+const AppReducer = (state, action) => {
+  switch (action.type) {
     case 'GET_TRANSACTIONS':
       return {
         ...state,
@@ -25,3 +25,5 @@ export default (state, action) => {
       return state;
   }
 }
+
+export default AppReducer;
