@@ -2,7 +2,8 @@ import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+// ✅ FIXED API URL
+const API_URL = "https://expense-traker-react21.onrender.com";
 
 const initialState = {
   transactions: [],
@@ -26,7 +27,10 @@ export const GlobalProvider = ({ children }) => {
     } catch (err) {
       dispatch({
         type: "TRANSACTION_ERROR",
-        payload: err.response.data.error,
+        payload:
+          err.response && err.response.data.error
+            ? err.response.data.error
+            : "Server Error",
       });
     }
   }
@@ -42,7 +46,10 @@ export const GlobalProvider = ({ children }) => {
     } catch (err) {
       dispatch({
         type: "TRANSACTION_ERROR",
-        payload: err.response.data.error,
+        payload:
+          err.response && err.response.data.error
+            ? err.response.data.error
+            : "Server Error",
       });
     }
   }
@@ -58,7 +65,7 @@ export const GlobalProvider = ({ children }) => {
       const res = await axios.post(
         `${API_URL}/api/v1/transactions`,
         transaction,
-        config,
+        config
       );
 
       dispatch({
