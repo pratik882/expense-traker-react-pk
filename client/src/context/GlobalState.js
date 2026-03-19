@@ -3,7 +3,7 @@ import AppReducer from "./AppReducer";
 import axios from "axios";
 
 // ✅ FIXED API URL
-const API_URL = "https://expense-traker-react21.onrender.com";
+const API_URL = "https://expense-traker-react-pk.onrender.com/api/v1/transactions";
 
 const initialState = {
   transactions: [],
@@ -37,7 +37,7 @@ export const GlobalProvider = ({ children }) => {
 
   async function deleteTransaction(id) {
     try {
-      await axios.delete(`${API_URL}/api/v1/transactions/${id}`);
+      await axios.post('https://expense-traker-react-pk.onrender.com/api/v1/transactions', data);
 
       dispatch({
         type: "DELETE_TRANSACTION",
