@@ -18,7 +18,7 @@ export const GlobalProvider = ({ children }) => {
 
   async function getTransactions() {
     try {
-      const res = await axios.get(`${API_URL}/api/v1/transactions`);
+      const res = await axios.get('https://expense-traker-react-pk.onrender.com/api/v1/transactions');
 
       dispatch({
         type: "GET_TRANSACTIONS",
